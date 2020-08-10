@@ -20,6 +20,14 @@
         @change="onImageSelect"
         ></v-file-input>
         <img v-if="imageUrl" :src="imageUrl" />
+        <v-btn
+          :disabled="!imageUrl"
+          color="primary"
+          @click="uploadClicked"
+        >
+          アップロード
+          <v-icon right dark>mdi-cloud-upload</v-icon>
+        </v-btn>
       </v-form>
     </v-flex>
   </v-layout>
@@ -46,6 +54,9 @@ export default {
       } else {
         this.imageUrl = ''
       }
+    },
+    uploadClicked() {
+      console.log("upload")
     }
   }
 }
