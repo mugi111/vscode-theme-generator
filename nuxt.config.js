@@ -81,5 +81,27 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    extend(config, ctx) {
+      module: {
+        rules: [
+          {
+            test: /\.pug$/,
+            oneOf: [
+              {
+                resourceQuery: /^\?vue/,
+                use: ['pug-plain-loader']
+              },
+              {
+                use: ['raw-loader', {
+                  loader: 'pug-plain-loader',
+                  options: {
+                    'pretty': false,
+                  }
+                }]
+              }
+            ]
+          },
+        ]}
+      }
+    }
   }
-}
